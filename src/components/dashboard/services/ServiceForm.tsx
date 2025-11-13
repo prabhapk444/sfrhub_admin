@@ -206,7 +206,7 @@ export const ServiceForm = ({
         <Button
           type="submit"
           disabled={isLoading || !formData.nameInEnglish.trim() || !formData.categoryId}
-          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200"
+          
         >
           {initialData ? "Update" : "Add"} Service
         </Button>
