@@ -5,18 +5,25 @@ import { Button } from "@/components/ui/button";
 import { CSVLink } from "react-csv";
 import { User } from "./types";
 import { Download } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface UserTableHeaderProps {
   searchTerm: string;
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   filteredUsers: User[];
   csvHeaders: { label: string; key: string }[];
+  statusFilter: string;
+onStatusChange: (value: "all" | "active" | "inactive") => void;
+
 }
 export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
-  searchTerm,
+   searchTerm,
   onSearchChange,
   filteredUsers,
   csvHeaders,
+  statusFilter,
+  onStatusChange,
+  
 }) => {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -29,6 +36,17 @@ export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
             value={searchTerm}
             onChange={onSearchChange}
           />
+
+           <Select value={statusFilter} onValueChange={onStatusChange}>
+          <SelectTrigger className="w-full sm:w-40">
+            <SelectValue placeholder="Filter status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="active">Active</SelectItem>
+            <SelectItem value="inactive">Inactive</SelectItem>
+          </SelectContent>
+        </Select>
         
  
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">

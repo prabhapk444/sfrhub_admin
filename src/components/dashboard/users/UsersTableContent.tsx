@@ -15,6 +15,7 @@ import { User } from "./types";
 interface UsersTableContentProps {
   filteredUsers: User[];
   toggleUserStatus: (user: User) => Promise<void>;
+   
 }
 
 export const UsersTableContent: React.FC<UsersTableContentProps> = ({
@@ -60,6 +61,7 @@ export const UsersTableContent: React.FC<UsersTableContentProps> = ({
           )}
         </TableBody>
       </Table>
+      
     </div>
   );
 };
