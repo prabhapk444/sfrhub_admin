@@ -1,7 +1,7 @@
-
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { CSVLink } from "react-csv";
 import { User } from "./types";
 import { Download } from "lucide-react";
@@ -13,21 +13,28 @@ interface UserTableHeaderProps {
   filteredUsers: User[];
   csvHeaders: { label: string; key: string }[];
   statusFilter: string;
-onStatusChange: (value: "all" | "active" | "inactive") => void;
-
+  onStatusChange: (value: "all" | "active" | "inactive") => void;
+  selectedUserIds: string[];
+  enableSelectedUsers: () => Promise<void>;
+  selectAllUsers: () => void;
+  deselectAllUsers: () => void;
 }
+
 export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
-   searchTerm,
+  searchTerm,
   onSearchChange,
   filteredUsers,
   csvHeaders,
   statusFilter,
   onStatusChange,
-  
+  selectedUserIds,
+  enableSelectedUsers,
+  selectAllUsers,
+  deselectAllUsers,
 }) => {
   return (
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-  
+   
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
         <h1 className="text-2xl font-bold">Users</h1>
         <Input
@@ -47,8 +54,33 @@ export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
             <SelectItem value="inactive">Inactive</SelectItem>
           </SelectContent>
         </Select>
-        
- 
+         
+        <div className="flex items-center gap-2">
+          {(() => {
+            const inactiveUsers = filteredUsers.filter(user => user.status !== "active");
+            return (
+              <>
+                <Checkbox
+                  checked={selectedUserIds.length === inactiveUsers.length && inactiveUsers.length > 0}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      selectAllUsers();
+                    } else {
+                      deselectAllUsers();
+                    }
+                  }}
+                />
+                <span>Select All Inactive</span>
+                {selectedUserIds.length > 0 && (
+                  <Button onClick={enableSelectedUsers} size="sm">
+                    Enable Selected ({selectedUserIds.length})
+                  </Button>
+                )}
+              </>
+            );
+          })()}
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
           {filteredUsers.length > 0 && (
             <CSVLink
@@ -66,7 +98,7 @@ export const UserTableHeader: React.FC<UserTableHeaderProps> = ({
               </Button>
             </CSVLink>
           )}
-          
+           
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ export type User = {
   fullName: string;
   email: string;
   phone: string;
-  status: "active" | "expired" | "Inactive";
+  status: "active" | "inactive" | "expired";
 };
 
 export type TabType = "dashboard" | "users" | "certificates" | "orders" | "analytics" | "land" | "categories" | "services";

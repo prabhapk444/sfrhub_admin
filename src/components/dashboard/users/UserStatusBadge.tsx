@@ -1,7 +1,7 @@
 
 import React from "react";
 
-type UserStatus = "active" | "expired" | "Inactive";
+type UserStatus = "active" | "inactive" | "expired";
 
 interface UserStatusBadgeProps {
   status: UserStatus;

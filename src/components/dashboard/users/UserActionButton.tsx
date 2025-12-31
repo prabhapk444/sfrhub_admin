@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 interface UserActionButtonProps {
-  status: "active" | "expired" | "Inactive";
+  status: "active" | "inactive" | "expired";
   onToggleStatus: () => Promise<void>;
 }
 
