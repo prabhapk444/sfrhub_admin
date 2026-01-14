@@ -41,7 +41,8 @@ export const useDashboardStats = () => {
   pending: enquiries.filter((e) => e.status === "pending").length,
   progress: enquiries.filter((e) => e.status === "in progress").length,
   completed: enquiries.filter((e) => e.status === "approved").length,
-  underreview: enquiries.filter((e) => e.status === "under review").length, 
+  underreview: enquiries.filter((e) => e.status === "under review").length,
+  cancelled: enquiries.filter((e) => e.status === "cancelled").length,
   total: enquiries.length
 };
 

@@ -67,6 +67,7 @@ export const EnquiryTable = ({ enquiries, loading, onStatusUpdate }: EnquiryTabl
                       <SelectItem value="in progress">In Progress</SelectItem>
                       <SelectItem value="under review">Under Review</SelectItem>
                       <SelectItem value="approved">Approved</SelectItem>
+                      <SelectItem value="cancelled">Cancelled</SelectItem>
                     </SelectContent>
                   </Select>
                 </TableCell>

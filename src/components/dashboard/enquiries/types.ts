@@ -1,5 +1,5 @@
 
-export type EnquiryStatus = "pending" | "in progress" | "under review" | "approved";
+export type EnquiryStatus = "pending" | "in progress" | "under review" | "approved" | "cancelled";
 
 export interface Enquiry {
   id: string;

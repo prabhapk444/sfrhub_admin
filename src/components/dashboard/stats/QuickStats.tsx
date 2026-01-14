@@ -6,6 +6,7 @@ interface OrderStatus {
   progress: number;
   completed: number;
   underreview: number;
+  cancelled: number;
   total: number;
 }
 
@@ -14,7 +15,7 @@ interface QuickStatsProps {
 }
 
 export const QuickStats = ({ orderStatus }: QuickStatsProps) => {
-const { pending, progress, completed, underreview, total } = orderStatus;
+const { pending, progress, completed, underreview, cancelled, total } = orderStatus;
 
 
   const getPercentage = (count: number) =>
@@ -53,6 +54,13 @@ const { pending, progress, completed, underreview, total } = orderStatus;
             count={underreview}
             percentage={getPercentage(underreview)}
             color="bg-purple-500"
+          />
+
+          <ProgressBar
+            label="Cancelled"
+            count={cancelled}
+            percentage={getPercentage(cancelled)}
+            color="bg-red-500"
           />
         </div>
       </CardContent>
